@@ -5,9 +5,5 @@ export default function ClientLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className="client-root-container min-h-screen bg-zinc-100 sm:bg-white">
-      {children}
-    </div>
-  );
+  return <div className="min-h-screen bg-[#f8f9fa]">{children}</div>;
 }
