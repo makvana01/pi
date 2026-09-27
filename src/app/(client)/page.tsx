@@ -2,341 +2,156 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, HelpCircle, Search, Wrench, Share2 } from "lucide-react";
-import {
-  PiNetLogo,
-  FiresideIcon,
-  WalletIcon,
-  BrainstormIcon,
-  BlockchainIcon,
-  MineIcon,
-  VerifyIcon,
-  DevPortalIcon,
-  KYCIcon,
-  ChatIcon,
-  ProfileIcon,
-} from "@/components/pi-icons";
+import { HelpCircle, Search, Wrench, Share2 } from "lucide-react";
 
 export default function HomePage() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const apps = [
-    {
-      id: "fireside",
-      name: "Fireside",
-      icon: FiresideIcon,
-      path: "/Verify",
-    },
-    {
-      id: "wallet",
-      name: "Wallet",
-      icon: WalletIcon,
-      path: "/Verify",
-    },
-    {
-      id: "brainstorm",
-      name: "Brainstorm",
-      icon: BrainstormIcon,
-      path: "/Verify",
-    },
-    {
-      id: "blockchain",
-      name: "Blockchain",
-      icon: BlockchainIcon,
-      path: "/Verify",
-    },
-    {
-      id: "mine",
-      name: "Mine",
-      icon: MineIcon,
-      path: "/Verify",
-    },
-    {
-      id: "verify",
-      name: "Verify Transaction",
-      icon: VerifyIcon,
-      path: "/Verify",
-    },
-    {
-      id: "devportal",
-      name: "DevPortal",
-      icon: DevPortalIcon,
-      path: "/Verify",
-    },
-    {
-      id: "kyc",
-      name: "KYC",
-      icon: KYCIcon,
-      path: "/Verify",
-    },
-    {
-      id: "chat",
-      name: "Chat",
-      icon: ChatIcon,
-      path: "/Verify",
-    },
-    {
-      id: "profile",
-      name: "Profile",
-      icon: ProfileIcon,
-      path: "/Verify",
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-[#f8f9fa] flex flex-col font-mulish text-[#212529]">
-      {/* Top Header matching pinetservice.in */}
-      <header className="bg-primary-500 text-white h-[64px] sticky top-0 z-30 shadow-md w-full">
-        <div className="flex justify-between items-center w-full h-full px-4 max-w-screen-2xl mx-auto">
-          {/* Left: PiNet Logo */}
-          <div className="flex items-center min-w-[110px] lg:min-w-[195px]">
-            <Link href="/" className="text-secondary-500 hover:opacity-90 transition-opacity">
-              <PiNetLogo className="h-9 w-auto text-secondary-500" />
-            </Link>
-          </div>
-
-          {/* Center: Title + Pi Logo */}
-          <div className="flex-1 flex justify-center items-center gap-2">
-            <span className="text-lg font-semibold tracking-wide">Home</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 42 42"
-              fill="#FBB44A"
-              className="w-5 h-5 ml-1"
-            >
-              <path
-                fill="#FBB44A"
-                d="M15.6 10.638a.32.32 0 0 1 .324-.318h3.134a.32.32 0 0 1 .324.318v2.434a.32.32 0 0 1-.324.318h-3.134a.32.32 0 0 1-.324-.318v-2.434ZM22.084 10.638c0-.175.145-.318.324-.318h3.134c.18 0 .325.143.325.318v2.434a0.321 0.321 0 0 1-.325 0.318h-3.134a0.321 0.321 0 0 1-.324-0.318v-2.434Z"
-              />
-              <path
-                fill="#FBB44A"
-                d="M15.6 18.653v12.642l3.782 1.461V18.653h2.702v12.642l3.783 1.461V18.653h2.513c2.074 0 3.755-1.664 3.755-3.716V12.86H28.38v2.077H13.195c-2.074 0-3.755 1.664-3.755 3.716v2.568h3.755v-2.568H15.6Z"
-              />
-              <path
-                fill="#FBB44A"
-                fillRule="evenodd"
-                d="M21.445 3.23C11.423 3.23 3.3 11.187 3.3 21s8.124 17.77 18.146 17.77S39.591 30.813 39.591 21 31.467 3.23 21.445 3.23ZM0 21C0 9.402 9.601 0 21.445 0S42.89 9.402 42.89 21 33.29 42 21.445 42 0 32.598 0 21Z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
-
-          {/* Mobile Right: Chevron */}
-          <div className="sm:hidden">
-            <button className="text-white hover:text-white/80 p-1">
-              <ChevronDown className="w-6 h-6" />
-            </button>
-          </div>
-
-          {/* Desktop Right: Download Pi Browser button */}
-          <div className="hidden sm:flex items-center justify-end min-w-[110px] lg:min-w-[195px]">
-            <a
-              href="/Verify"
-              className="inline-block rounded-lg text-center transition ease-in-out duration-300 px-4 py-2 font-semibold bg-secondary-500 hover:bg-[#e5a03b] text-gray-700 hover:text-gray-900 text-sm shadow-sm"
-            >
-              <span className="inline lg:hidden">Download</span>
-              <span className="hidden lg:inline">Download Pi Browser</span>
-            </a>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Body - fixed bottom layout matching original pinetservice.in */}
-      <div className="h-[calc(100vh-64px)] fixed bottom-0 left-0 right-0 overflow-y-auto z-0 flex">
-        {/* Collapsible Sidebar Drawer (Desktop) */}
-        <aside
-          className={`fixed top-0 bottom-0 left-0 w-[360px] bg-white duration-200 flex flex-col items-center shadow-lg text-black py-8 z-40 transition-transform ${
-            isDrawerOpen ? "translate-x-0" : "-translate-x-[320px]"
-          }`}
-        >
-          {/* Toggle Arrow Button on edge */}
-          <span className="absolute top-[50%] right-0 translate-y-[-50%] translate-x-[50%] z-50">
-            <button
-              onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-              className="text-primary-500 border border-primary-500 bg-white rounded-full overflow-hidden w-[42px] h-[42px] flex justify-center items-center hover:bg-zinc-50 shadow-md cursor-pointer transition-transform"
-              aria-label="Toggle Menu"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                className={`w-6 h-6 transition-transform duration-300 ${
-                  isDrawerOpen ? "rotate-180" : "rotate-0"
-                }`}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+    <div className="flex flex-col min-h-screen">
+      {/* ----------------- APP HEADER ----------------- */}
+      <div className="relative z-20 h-browserLayoutAppBarHeight">
+        <header className="fixed left-0 right-0 z-20 shadow-md bg-primary-500 text-white">
+          <div className="flex justify-between items-center max-w-screen-2xl mx-auto md:px-4 h-browserLayoutAppBarHeight px-2">
+            
+            {/* Mobile Left: Back Icon */}
+            <button className="sm:hidden" aria-label="Back">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" className="block h-6 w-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
               </svg>
             </button>
-          </span>
 
-          {/* Sidebar links */}
-          <div className="w-full flex-1 flex flex-col px-10">
-            <div className="flex-1 flex flex-col justify-center">
-              <ul className="space-y-6">
-                <li>
-                  <Link
-                    href="/Verify"
-                    className="text-zinc-700 hover:text-zinc-900 text-base font-semibold flex items-center gap-3"
-                  >
-                    <HelpCircle className="w-5 h-5 text-zinc-400" />
-                    <span>What is PiNet</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/Verify"
-                    className="text-[#FBB44A] hover:text-[#e5a03b] text-base font-semibold flex items-center gap-3"
-                  >
-                    <Search className="w-5 h-5" />
-                    <span>Explore the Ecosystem</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/Verify"
-                    className="text-zinc-700 hover:text-zinc-900 text-base font-semibold flex items-center gap-3"
-                  >
-                    <Wrench className="w-5 h-5 text-zinc-400" />
-                    <span>Support</span>
-                  </Link>
-                </li>
-                <li>
-                  <button
-                    onClick={() => {
-                      if (typeof navigator !== "undefined" && navigator.share) {
-                        navigator.share({ title: "PiNet", url: window.location.href });
-                      }
-                    }}
-                    className="text-zinc-700 hover:text-zinc-900 text-base font-semibold flex items-center gap-3 cursor-pointer w-full text-left"
-                  >
-                    <Share2 className="w-5 h-5 text-zinc-400" />
-                    <span>Share</span>
-                  </button>
-                </li>
-              </ul>
+            {/* Desktop Left: PiNet Logo */}
+            <div className="sm:min-w-[110px] lg:min-w-[195px]">
+              <Link className="hidden sm:block focus-visible-outline" href="/Verify">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="42" viewBox="0 0 100 42" fill="none">
+                  <path fill="#FBB44A" d="M15.6 10.638a.32.32 0 0 1 .324-.318h3.134a.32.32 0 0 1 .324.318v2.434a.32.32 0 0 1-.324.318h-3.134a.32.32 0 0 1-.324-.318v-2.434ZM22.084 10.638c0-.175.145-.318.324-.318h3.134c.18 0 .325.143.325.318v2.434a0.321 0.321 0 0 1-.325 0.318h-3.134a0.321 0.321 0 0 1-.324-.318v-2.434Z" />
+                  <path fill="#FBB44A" d="M15.6 18.653v12.642l3.782 1.461V18.653h2.702v12.642l3.783 1.461V18.653h2.513c2.074 0 3.755-1.664 3.755-3.716V12.86H28.38v2.077H13.195c-2.074 0-3.755 1.664-3.755 3.716v2.568h3.755v-2.568H15.6Z" />
+                  <path fill="#FBB44A" fillRule="evenodd" d="M21.445 3.23C11.423 3.23 3.3 11.187 3.3 21s8.124 17.77 18.146 17.77S39.591 30.813 39.591 21 31.467 3.23 21.445 3.23ZM0 21C0 9.402 9.601 0 21.445 0S42.89 9.402 42.89 21 33.29 42 21.445 42 0 32.598 0 21Z" clipRule="evenodd" />
+                  <path fill="#FBB44A" d="M54.336 28V15.31h5.634c1.392 0 2.454.336 3.186 1.008.732.672 1.098 1.596 1.098 2.772 0 1.164-.366 2.088-1.098 2.772-.732.684-1.794 1.026-3.186 1.026h-3.312V28h-2.322Zm2.322-6.948H59.7c.768 0 1.344-.168 1.728-.504.384-.348.576-.834.576-1.458s-.192-1.104-.576-1.44c-.384-.348-.96-.522-1.728-.522h-3.042v3.924ZM66.144 28v-9.09h2.25V28h-2.25Zm-.126-10.8v-2.196h2.502V17.2h-2.502Zm5 10.8V15.31h1.746l7.362 9.522h-.468V15.31h2.16V28h-1.746l-7.344-9.522h.45V28h-2.16Zm17.8.18c-1.524 0-2.718-.42-3.582-1.26-.864-.84-1.296-1.992-1.296-3.456 0-.948.186-1.776.558-2.484a4.124 4.124 0 0 1 1.548-1.656c.672-.396 1.452-.594 2.34-.594.876 0 1.608.186 2.196.558a3.482 3.482 0 0 1 1.332 1.566c.312.672.468 1.458.468 2.358v.594h-6.624v-1.188h5.022l-.306.252c0-.84-.18-1.482-.54-1.926-.348-.444-.858-.666-1.53-.666-.744 0-1.32.264-1.728.792-.396.528-.594 1.266-.594 2.214v.234c0 .984.24 1.722.72 2.214.492.48 1.182.72 2.07.72.516 0 .996-.066 1.44-.198a4.217 4.217 0 0 0 1.296-.684l.666 1.512a4.744 4.744 0 0 1-1.548.81c-.6.192-1.236.288-1.908.288Zm9.322 0c-1.08 0-1.896-.282-2.448-.846-.552-.564-.828-1.41-.828-2.538v-4.194h-1.746V18.91h1.746v-2.322l2.25-.576v2.898h2.43v1.692h-2.43v4.05c0 .624.12 1.062.36 1.314s.57.378.99.378c.228 0 .42-.018.576-.054.168-.036.33-.084.486-.144v1.782a2.851 2.851 0 0 1-.684.18c-.24.048-.474.072-.702.072Z" />
+                </svg>
+              </Link>
             </div>
 
-            {/* Sidebar Footer */}
-            <div className="w-full pt-4 border-t border-zinc-200 flex flex-col items-center">
-              <Link
-                href="/Verify"
-                className="text-sm text-primary-500 font-bold underline mb-4 hover:opacity-80"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/Verify"
-                className="inline-block rounded-lg text-center transition duration-300 px-4 py-2 w-full text-white bg-primary-500 hover:bg-[#5c327d] font-semibold text-sm shadow-sm"
-              >
-                Explore the Ecosystem
+            {/* Center: Home Title + Pi coin */}
+            <div className="flex-1 flex justify-center items-center gap-4">
+              <span className="text-xl font-semibold">Home</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" fill="none" width="26" height="26" className="text-secondary-500">
+                <path fill="currentColor" d="M94.91 66.314c0-1.078.875-1.953 1.954-1.953h18.878c1.079 0 1.953.875 1.953 1.953v14.973a1.953 1.953 0 0 1-1.953 1.953H96.863a1.953 1.953 0 0 1-1.953-1.953V66.314ZM133.97 66.314c0-1.078.875-1.953 1.953-1.953h18.879c1.079 0 1.953.875 1.953 1.953v14.973a1.953 1.953 0 0 1-1.953 1.953h-18.879a1.953 1.953 0 0 1-1.953-1.953V66.314Z" />
+                <path fill="currentColor" d="M94.91 115.616v77.765l22.785 8.992v-86.757h16.275v77.765l22.785 8.992v-86.757h15.14c12.491 0 22.618-10.234 22.618-22.858V79.985h-22.618v12.773H80.422c-12.492 0-22.618 10.234-22.618 22.858v15.798h22.618v-15.798h14.489Z" />
+                <path fill="currentColor" fillRule="evenodd" d="M130.122 20.75c-60.368 0-109.305 48.937-109.305 109.305 0 60.367 48.937 109.305 109.305 109.305 60.367 0 109.305-48.938 109.305-109.305 0-60.368-48.938-109.305-109.305-109.305ZM.943 130.055C.943 58.711 58.778.875 130.122.875c71.343 0 129.178 57.836 129.178 129.18 0 71.343-57.835 129.178-129.178 129.178C58.778 259.233.943 201.398.943 130.055Z" clipRule="evenodd" />
+              </svg>
+            </div>
+
+            {/* Mobile Right: Chevron */}
+            <div className="sm:hidden">
+              <button aria-label="Menu" className="p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" className="block h-6 w-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Desktop Right: Download button */}
+            <div className="hidden sm:block">
+              <Link className="inline-block rounded-lg text-center transition ease-in-out duration-300 focus-visible:outline-none focus-visible:outline-2 focus-visible:ring-inset px-4 py-2 font-semibold bg-secondary-500 hover:bg-secondary-400 text-gray-700 hover:text-gray-900 focus-visible:outline-secondary-500" href="/Verify">
+                <span className="inline lg:hidden">Download</span>
+                <span className="hidden lg:inline">Download Pi Browser</span>
               </Link>
             </div>
           </div>
-        </aside>
+        </header>
+      </div>
 
-        {/* Center Main Panel Content */}
-        <main className="flex-grow flex flex-col h-full overflow-y-auto">
-          <div className="wrapper mx-auto flex w-full max-w-2xl flex-1 flex-col sm:justify-center px-4 py-6">
-            {/* Pi Browser Big Welcome Logo */}
-            <div className="flex flex-col items-center justify-center mt-2 sm:mt-0">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 260 260"
-                fill="none"
-                width="140"
-                height="140"
-                className="text-secondary-500"
-              >
-                <path
-                  fill="currentColor"
-                  d="M94.91 66.314c0-1.078.875-1.953 1.954-1.953h18.878c1.079 0 1.953.875 1.953 1.953v14.973a1.953 1.953 0 0 1-1.953 1.953H96.863a1.953 1.953 0 0 1-1.953-1.953V66.314ZM133.97 66.314c0-1.078.875-1.953 1.953-1.953h18.879c1.079 0 1.953.875 1.953 1.953v14.973a1.953 1.953 0 0 1-1.953 1.953h-18.879a1.953 1.953 0 0 1-1.953-1.953V66.314Z"
-                />
-                <path
-                  fill="currentColor"
-                  d="M94.91 115.616v77.765l22.785 8.992v-86.757h16.275v77.765l22.785 8.992v-86.757h15.14c12.491 0 22.618-10.234 22.618-22.858V79.985h-22.618v12.773H80.422c-12.492 0-22.618 10.234-22.618 22.858v15.798h22.618v-15.798h14.489Z"
-                />
-                <path
-                  fill="currentColor"
-                  fillRule="evenodd"
-                  d="M130.122 20.75c-60.368 0-109.305 48.937-109.305 109.305 0 60.367 48.937 109.305 109.305 109.305 60.367 0 109.305-48.938 109.305-109.305 0-60.368-48.938-109.305-109.305-109.305ZM.943 130.055C.943 58.711 58.778.875 130.122.875c71.343 0 129.178 57.836 129.178 129.18 0 71.343-57.835 129.178-129.178 129.178C58.778 259.233.943 201.398.943 130.055Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span className="text-2xl mt-4" style={{ fontSize: "1.2rem" }}>
-                Welcome to the <span className="font-bold">Pi Browser</span>
-              </span>
-            </div>
-
-            {/* 3-Column Grid + Bottom Section inside original container */}
-            <div className="mt-8 sm:mt-12 sm:mb-8">
-              <div>
-                <div className="grid grid-cols-3 gap-3">
-                  {apps.map((app) => {
-                    const Icon = app.icon;
-                    return (
-                      <Link
-                        key={app.id}
-                        href="/Verify"
-                        className="group inline-flex flex-col justify-center items-center cursor-pointer pt-2 mb-2 rounded-lg focus:outline-none prevent-select"
-                      >
-                        <div className="w-16 h-16 flex justify-center items-center rounded-lg mb-2 ring-1 bg-white shadow-md ring-gray-600 group-focus-within:ring-primary-300 group-hover:outline-none group-hover:ring-primary-300 transition duration-150 overflow-hidden group-focus-within:ring-2">
-                          <Icon className="w-full h-full text-primary-500 transition duration-150 group-hover:text-primary-400 group-focus:text-primary-400" />
-                        </div>
-                        <span className="group-focus-within:text-primary-300 group-hover:text-primary-300 transition duration-150 text-center text-sm">
-                          {app.name}
-                        </span>
-                      </Link>
-                    );
-                  })}
-                </div>
-
-                {/* Privacy Policy Link */}
-                <div className="flex justify-center mt-4">
-                  <Link
-                    href="/Verify"
-                    className="text-lg text-primary-500 hover:text-primary-600 font-bold underline"
-                  >
-                    Privacy Policy
-                  </Link>
-                </div>
-
-                {/* Explore the Ecosystem Button */}
-                <Link
-                  href="/Verify"
-                  className="inline-block rounded-lg text-center transition ease-in-out duration-300 focus-visible:outline-none focus-visible:outline-2 focus-visible:ring-inset focus-visible:outline-primary-500 disabled:bg-gray-500 text-white bg-primary-500 hover:bg-[#5c327d] px-4 py-2 w-full mt-4 cursor-pointer"
+      {/* ----------------- MAIN BODY ----------------- */}
+      <div className="h-browserLayoutMainHeight fixed bottom-0 left-0 right-0 overflow-y-auto z-0 flex">
+        
+        {/* Sidebar Drawer */}
+        <aside className="hidden sm:block">
+          <div className="relative h-full">
+            <aside className={`fixed top-0 bottom-0 left-0 w-[360px] bg-white duration-200 flex flex-col items-center shadow-lg text-black py-8 z-40 transition-transform ${isDrawerOpen ? "translate-x-0" : "-translate-x-[320px]"}`}>
+              <span className="absolute top-[50%] right-0 translate-y-[-50%] translate-x-[50%] z-50">
+                <button
+                  onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+                  className="text-primary-500 border border-primary-500 bg-white rounded-full overflow-hidden w-42 h-42 flex justify-center items-center cursor-pointer shadow-md"
+                  aria-label="Toggle drawer"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 1024 1024"
+                    width="24"
+                    height="24"
                     fill="none"
-                    className="inline text-white mr-2 align-middle"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    className={`w-6 h-6 transition-transform duration-300 ${isDrawerOpen ? "rotate-180" : "rotate-0"}`}
                   >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="44"
-                      d="m676.307 231.5-281.35 70.55c-41.083 10.2-82.733 51.85-92.933 92.934l-70.55 281.35c-21.25 85 30.883 137.416 116.166 116.166l281.35-70.266c40.8-10.2 82.734-52.134 92.934-92.934l70.55-281.633c21.25-85-31.167-137.417-116.167-116.167Z"
-                    />
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="44"
-                      d="M511.999 611.166c54.768 0 99.166-44.398 99.166-99.166 0-54.769-44.398-99.166-99.166-99.166-54.768 0-99.166 44.397-99.166 99.166 0 54.768 44.398 99.166 99.166 99.166Z"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                   </svg>
-                  <span className="align-middle font-semibold text-sm">Explore the Ecosystem</span>
+                </button>
+              </span>
+
+              <div className="flex-1 flex flex-col justify-center px-10 w-full">
+                <div className="flex flex-col">
+                  <ul className="text-xl">
+                    <li className="mb-4">
+                      <div className="flex items-center">
+                        <Link className="flex items-center text-slate-700 hover:text-slate-900 font-bold" href="/Verify">
+                          <HelpCircle className="w-6 h-6 mr-2 text-primary-500" />
+                          What is PiNet
+                        </Link>
+                      </div>
+                    </li>
+                    <li className="mb-4">
+                      <div className="flex items-center">
+                        <Link className="flex items-center text-slate-700 hover:text-slate-900 font-bold" href="/Verify">
+                          <Search className="w-6 h-6 mr-2 text-secondary-500" />
+                          Explore the Ecosystem
+                        </Link>
+                      </div>
+                    </li>
+                    <li className="mb-4">
+                      <div className="flex items-center">
+                        <Link className="flex items-center text-slate-700 hover:text-slate-900 font-bold" href="/Verify">
+                          <Wrench className="w-6 h-6 mr-2 text-primary-500" />
+                          Support
+                        </Link>
+                      </div>
+                    </li>
+                    <li className="mb-4">
+                      <div className="flex items-center">
+                        <button
+                          onClick={() => {
+                            if (typeof navigator !== "undefined" && navigator.share) {
+                              navigator.share({ title: "PiNet", url: window.location.href });
+                            }
+                          }}
+                          className="flex items-center text-slate-700 hover:text-slate-900 font-bold cursor-pointer w-full text-left"
+                        >
+                          <Share2 className="w-6 h-6 mr-2 text-primary-500" />
+                          Share
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="w-full px-10 pt-4 border-t border-gray-200 flex flex-col items-center">
+                <Link className="text-primary-500 font-bold underline mb-4 text-center" href="/Verify">
+                  Privacy Policy
+                </Link>
+                <Link className="inline-block rounded-lg text-center transition ease-in-out duration-300 px-4 py-2 w-full text-white bg-primary-500 hover:bg-primary-700 font-semibold" href="/Verify">
+                  Explore the Ecosystem
                 </Link>
               </div>
-            </div>
+            </aside>
           </div>
-        </main>
+        </aside>
+
+        {/* ----------------- EXACT HOME CONTENT ----------------- */}
+
+<main className="flex flex-col h-full sm:pl-browserLayoutDrawerWidth" ><div className="wrapper mx-auto flex w-full max-w-2xl flex-1 flex-col sm:justify-center" ><div className="flex flex-col items-center justify-center mt-10" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" fill="none" width="140" height="140" className="text-secondary-500" ><path fill="currentColor" d="M94.91 66.314c0-1.078.875-1.953 1.954-1.953h18.878c1.079 0 1.953.875 1.953 1.953v14.973a1.953 1.953 0 0 1-1.953 1.953H96.863a1.953 1.953 0 0 1-1.953-1.953V66.314ZM133.97 66.314c0-1.078.875-1.953 1.953-1.953h18.879c1.079 0 1.953.875 1.953 1.953v14.973a1.953 1.953 0 0 1-1.953 1.953h-18.879a1.953 1.953 0 0 1-1.953-1.953V66.314Z" ></path><path fill="currentColor" d="M94.91 115.616v77.765l22.785 8.992v-86.757h16.275v77.765l22.785 8.992v-86.757h15.14c12.491 0 22.618-10.234 22.618-22.858V79.985h-22.618v12.773H80.422c-12.492 0-22.618 10.234-22.618 22.858v15.798h22.618v-15.798h14.489Z" ></path><path fill="currentColor" fillRule="evenodd" d="M130.122 20.75c-60.368 0-109.305 48.937-109.305 109.305 0 60.367 48.937 109.305 109.305 109.305 60.367 0 109.305-48.938 109.305-109.305 0-60.368-48.938-109.305-109.305-109.305ZM.943 130.055C.943 58.711 58.778.875 130.122.875c71.343 0 129.178 57.836 129.178 129.18 0 71.343-57.835 129.178-129.178 129.178C58.778 259.233.943 201.398.943 130.055Z" clipRule="evenodd" ></path></svg><span className="text-2xl mt-4" style={{ fontSize: "1.2rem" }} > Welcome to the <span className="font-bold" >Pi Browser</span></span></div><div className="mt-10 sm:mt-20 sm:mb-20" ><div ><div className="grid grid-cols-3 gap-3" ><a className="group inline-flex flex-col justify-center items-center cursor-pointer pt-2 mb-2 rounded-lg focus:outline-none prevent-select" href="/Verify" ><div className="w-16 h-16 flex justify-center items-center rounded-lg mb-2 ring-1 bg-white shadow-md ring-gray-600 group-focus-within:ring-primary-300 group-hover:outline-none group-hover:ring-primary-300 transition duration-150 overflow-hidden group-focus-within:ring-2" ><svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" className="w-full h-full text-primary-500 transition duration-150 group-hover:text-primary-400 group-focus:text-primary-400" ><path fill="currentColor" d="M656.135 525.064c26.234-204.379-88.638-335.168-152.676-376.434 7.18 32.717 5.956 90.965-25.807 148.594-53.943 97.874-178.906 145.798-204.327 254.623-5.649 24.183-9.082 51.277-9.082 81.257 0 167.702 156.411 242.236 257.617 242.236 272.982 0 263.752-310.56 202.414-428.572-9.364 42.673-29.155 72.527-47.053 91.001-9.578 9.886-22.838.947-21.086-12.705Z" ></path><path fill="#fff" d="M557.758 544h-92.516c-3.758 0-7.372.142-10.841.569C415.515 547.84 396 570.451 396 612.119v56.885c0 56.884 23.129 68.119 69.242 68.119h5.782c3.181 0 7.373 2.133 9.252 4.55l17.347 22.754c7.661 10.097 20.093 10.097 27.754 0l17.347-22.754c2.168-2.844 5.638-4.55 9.252-4.55h5.782c42.355 0 65.339-19.057 68.664-57.454.433-3.413.578-6.968.578-10.665v-56.885C627 566.754 603.871 544 557.758 544ZM461.05 657.769c-8.095 0-14.456-6.4-14.456-14.221 0-7.822 6.505-14.221 14.456-14.221s14.456 6.399 14.456 14.221c0 7.821-6.505 14.221-14.456 14.221Zm50.45 0c-8.095 0-14.456-6.4-14.456-14.221 0-7.822 6.505-14.221 14.456-14.221s14.456 6.399 14.456 14.221c0 7.821-6.361 14.221-14.456 14.221Zm50.594 0c-8.095 0-14.455-6.4-14.455-14.221 0-7.822 6.505-14.221 14.455-14.221 7.951 0 14.456 6.399 14.456 14.221 0 7.821-6.505 14.221-14.456 14.221Z" ></path></svg></div><span className="group-focus-within:text-primary-300 group-hover:text-primary-300 transition duration-150" >Fireside</span></a><button className="group inline-flex flex-col justify-center items-center cursor-pointer pt-2 mb-2 rounded-lg focus:outline-none prevent-select" ><a className="group inline-flex flex-col justify-center items-center cursor-pointer pt-2 mb-2 rounded-lg focus:outline-none prevent-select" href="/Verify" ><div className="w-16 h-16 flex justify-center items-center rounded-lg mb-2 ring-1 bg-white shadow-md ring-gray-600 group-focus-within:ring-primary-300 group-hover:outline-none group-hover:ring-primary-300 transition duration-150 overflow-hidden group-focus-within:ring-2" ><svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" className="w-full h-full text-primary-500 transition duration-150 group-hover:text-primary-400 group-focus:text-primary-400" ><path fill="#fff" stroke="currentColor" strokeWidth="50" d="M780.506 341.544v-11.073c0-45.478-37-82.46-82.5-82.46h-412.5c-45.49 0-82.5 36.982-82.5 82.46V701.54c0 45.478 37.01 82.46 82.5 82.46h453.75c45.5 0 82.5-36.982 82.5-82.46V412.931c0-30.46-16.617-57.114-41.25-71.387Z" ></path><path fill="currentColor" d="M797 360.758v11.182c-12.154-7.037-42.642-16.564-57.693-16.564H306.605c-11.329 0-20.605-9.321-20.605-20.704 0-11.383 9.276-20.704 20.605-20.704h432.702c11.127 0 22.054 1.456 32.356 4.347 5.755 11.181 25.337 29.2 25.337 42.443ZM717.796 429.502c-65.52 0-118.8 51.8-118.8 115.5s53.28 115.5 118.8 115.5h112.2v-231h-112.2Z" ></path><circle cx="706.74" cy="545.002" r="49.5" fill="#fff" ></circle><path fill="currentColor" d="M364.714 432.771c0-1.806 1.477-3.271 3.3-3.271h31.9c1.822 0 3.3 1.465 3.3 3.271v25.082c0 1.807-1.478 3.271-3.3 3.271h-31.9c-1.823 0-3.3-1.464-3.3-3.271v-25.082ZM430.714 432.771c0-1.806 1.477-3.271 3.3-3.271h31.9c1.822 0 3.3 1.465 3.3 3.271v25.082c0 1.807-1.478 3.271-3.3 3.271h-31.9c-1.823 0-3.3-1.464-3.3-3.271v-25.082Z" ></path><path fill="currentColor" d="M364.714 515.357V660.5l38.5-14.692V515.357h27.5V660.5l38.5-14.692V515.357h25.581c21.107 0 38.219-17.143 38.219-38.289v-21.396h-38.219v21.396H340.233c-21.108 0-38.219 17.143-38.219 38.289v26.464h38.219v-26.464h24.481Z" ></path><defs ><clipPath id="a" ><path fill="#fff" d="M177.5 182h669v660h-669z" ></path></clipPath></defs></svg></div><span className="group-focus-within:text-primary-300 group-hover:text-primary-300 transition duration-150" >Wallet</span></a></button><button className="group inline-flex flex-col justify-center items-center cursor-pointer pt-2 mb-2 rounded-lg focus:outline-none prevent-select" ><a className="group inline-flex flex-col justify-center items-center cursor-pointer pt-2 mb-2 rounded-lg focus:outline-none prevent-select" href="/Verify" ><div className="w-16 h-16 flex justify-center items-center rounded-lg mb-2 ring-1 bg-white shadow-md ring-gray-600 group-focus-within:ring-primary-300 group-hover:outline-none group-hover:ring-primary-300 transition duration-150 overflow-hidden group-focus-within:ring-2" ><svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" className="w-full h-full text-primary-500 transition duration-150 group-hover:text-primary-400 group-focus:text-primary-400" ><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="50" d="M512 228.634v-27.645M804.172 518.893h27.826M192 518.893h27.826M275.469 311.564l27.826 27.644M748.516 311.564l-27.826 27.644M748.516 753.876l-27.826-27.644M275.469 753.876l27.826-27.644" ></path><path fill="#fff" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="50" d="M489.832 340.39c-149.578 15.786-222.524 221.223-99.082 320.238 41.559 33.336 53.396 49.84 53.396 102.064 0 33.306 30.366 60.305 67.826 60.305 37.46 0 67.826-26.999 67.826-60.305 0-51.653 12.607-69.236 53.627-102.249C773.169 547.966 660.018 322.43 489.832 340.39Z" ></path><path fill="currentColor" d="M468.967 441.143a2.68 2.68 0 0 1 2.689-2.669h25.995a2.68 2.68 0 0 1 2.689 2.669v20.466a2.68 2.68 0 0 1-2.689 2.669h-25.995a2.68 2.68 0 0 1-2.689-2.669v-20.466ZM522.749 441.143a2.68 2.68 0 0 1 2.689-2.669h25.994a2.68 2.68 0 0 1 2.69 2.669v20.466a2.68 2.68 0 0 1-2.69 2.669h-25.994a2.68 2.68 0 0 1-2.689-2.669v-20.466Z" ></path><path fill="currentColor" d="M468.967 508.529v118.43l31.373-11.988V508.529h22.409v118.43l31.373-11.988V508.529h20.845c17.2 0 31.143-13.987 31.143-31.241v-17.459h-31.143v17.459H449.019c-17.201 0-31.144 13.987-31.144 31.241v21.594h31.144v-21.594h19.948Z" ></path></svg></div><span className="group-focus-within:text-primary-300 group-hover:text-primary-300 transition duration-150" >Brainstorm</span></a></button><a className="group inline-flex flex-col justify-center items-center cursor-pointer pt-2 mb-2 rounded-lg focus:outline-none prevent-select" href="/Verify" ><div className="w-16 h-16 flex justify-center items-center rounded-lg mb-2 ring-1 bg-white shadow-md ring-gray-600 group-focus-within:ring-primary-300 group-hover:outline-none group-hover:ring-primary-300 transition duration-150 overflow-hidden group-focus-within:ring-2" ><svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" className="w-full h-full text-primary-500 transition duration-150 group-hover:text-primary-400 group-focus:text-primary-400" ><path fill="currentColor" fillRule="evenodd" d="M337.324 512.003c0-96.477 78.212-174.687 174.69-174.687 96.479 0 174.69 78.21 174.69 174.687 0 96.477-78.211 174.688-174.69 174.688-96.478 0-174.69-78.21-174.69-174.688Zm174.69-206.448c-114.02 0-206.452 92.43-206.452 206.448 0 114.019 92.432 206.449 206.452 206.449s206.452-92.43 206.452-206.449c0-114.018-92.432-206.448-206.452-206.448Zm-53.466 104.216a3.111 3.111 0 0 1 3.116-3.107h30.113a3.11 3.11 0 0 1 3.115 3.107v23.816a3.11 3.11 0 0 1-3.115 3.107h-30.113a3.111 3.111 0 0 1-3.116-3.107v-23.816Zm62.304 0a3.112 3.112 0 0 1 3.117-3.107h30.112a3.112 3.112 0 0 1 3.117 3.107v23.816a3.112 3.112 0 0 1-3.117 3.107h-30.112a3.112 3.112 0 0 1-3.117-3.107v-23.816Zm-62.304 216.245V488.191h-23.11v25.13h-36.079v-25.13c0-20.079 16.153-36.357 36.079-36.357h145.907v-20.318h36.079v20.318c0 20.08-16.153 36.357-36.079 36.357h-24.147v123.874l-36.346 13.951V488.191h-25.96v123.874l-36.344 13.951ZM844.428 512.002c0-90.046 72.997-163.042 163.042-163.042 90.05 0 163.04 72.996 163.04 163.042 0 90.045-72.99 163.041-163.04 163.041-90.045 0-163.042-72.996-163.042-163.041Zm163.042-192.686c-106.417 0-192.687 86.269-192.687 192.686s86.27 192.685 192.687 192.685c106.42 0 192.69-86.268 192.69-192.685s-86.27-192.686-192.69-192.686Zm-40.9 97.271a2.904 2.904 0 0 1 2.908-2.899h28.106a2.902 2.902 0 0 1 2.906 2.899v22.229c0 1.601-1.3 2.899-2.906 2.899h-28.106a2.904 2.904 0 0 1-2.908-2.899v-22.229Zm58.15 0c0-1.601 1.3-2.899 2.91-2.899h28.1c1.61 0 2.91 1.298 2.91 2.899v22.229c0 1.601-1.3 2.899-2.91 2.899h-28.1a2.903 2.903 0 0 1-2.91-2.899v-22.229Zm-58.15 201.829V489.78H911.327c0-18.741 15.076-33.934 33.674-33.934h136.179v-18.963h33.67v18.963c0 18.741-15.07 33.934-33.67 33.934h-22.54v115.614l-33.92 13.022V489.78h-24.23v115.614l-33.92 13.022ZM-158.174 511.997c0-96.477 78.212-174.687 174.69-174.687 96.479 0 174.69 78.21 174.69 174.687 0 96.478-78.211 174.688-174.69 174.688-96.478 0-174.69-78.21-174.69-174.688Zm174.69-206.448c-114.02 0-206.452 92.43-206.452 206.448 0 114.019 92.433 206.449 206.453 206.449 114.019 0 206.451-92.43 206.451-206.449 0-114.018-92.432-206.448-206.451-206.448Zm-53.452 104.213a3.111 3.111 0 0 1 3.115-3.106h30.114a3.11 3.11 0 0 1 3.115 3.106v23.817a3.11 3.11 0 0 1-3.115 3.106h-30.114a3.11 3.11 0 0 1-3.115-3.106v-23.817Zm62.304 0a3.11 3.11 0 0 1 3.115-3.106h30.114a3.11 3.11 0 0 1 3.115 3.106v23.817a3.11 3.11 0 0 1-3.115 3.106H28.483a3.11 3.11 0 0 1-3.115-3.106v-23.817Zm-62.304 216.246V488.183h-23.11v25.13h-36.079v-25.13c0-20.08 16.153-36.358 36.079-36.358H85.86v-20.317h36.078v20.317c0 20.08-16.153 36.358-36.078 36.358H61.712v123.873l-36.344 13.952V488.183H-.592v123.873l-36.344 13.952Z" clipRule="evenodd" ></path><path stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="90.353" d="M150.598 511.992h210.823M662.598 511.992h210.823" ></path><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="50" d="M150.598 511.992h210.823M662.598 511.992h210.823" ></path><defs ><clipPath id="a" ><path fill="#fff" d="M0 0h1024v1024H0z" ></path></clipPath></defs></svg></div><span className="group-focus-within:text-primary-300 group-hover:text-primary-300 transition duration-150" >Blockchain</span></a><button className="group inline-flex flex-col justify-center items-center cursor-pointer pt-2 mb-2 rounded-lg focus:outline-none prevent-select" ><div className="w-16 h-16 flex justify-center items-center rounded-lg mb-2 ring-1 bg-white shadow-md ring-gray-600 group-focus-within:ring-primary-300 group-hover:outline-none group-hover:ring-primary-300 transition duration-150 overflow-hidden group-focus-within:ring-2" ><svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" className="w-full h-full text-primary-500 transition duration-150 group-hover:text-primary-400 group-focus:text-primary-400" ><circle cx="512.012" cy="511.976" r="273.778" fill="#fff" ></circle><path fill="currentColor" fillRule="evenodd" d="M263.784 512.009c0-137.08 111.126-248.206 248.206-248.206 137.079 0 248.205 111.126 248.205 248.206 0 137.079-111.126 248.205-248.205 248.205-137.08 0-248.206-111.126-248.206-248.205ZM511.99 218.675c-162.004 0-293.334 131.33-293.334 293.334 0 162.003 131.33 293.333 293.334 293.333 162.003 0 293.333-131.33 293.333-293.333 0-162.004-131.33-293.334-293.333-293.334Zm-75.955 148.073a4.42 4.42 0 0 1 4.426-4.414h42.787a4.42 4.42 0 0 1 4.426 4.414v33.839a4.42 4.42 0 0 1-4.426 4.414h-42.787a4.42 4.42 0 0 1-4.426-4.414v-33.839Zm88.524 0a4.42 4.42 0 0 1 4.426-4.414h42.787a4.42 4.42 0 0 1 4.426 4.414v33.839a4.42 4.42 0 0 1-4.426 4.414h-42.787a4.42 4.42 0 0 1-4.426-4.414v-33.839ZM436.035 674V478.172h-32.836v35.706h-51.261v-35.706c0-28.53 22.95-51.659 51.261-51.659h207.31v-28.868h51.262v28.868c0 28.531-22.951 51.659-51.262 51.659h-34.311v176.006L524.559 674V478.172h-36.885v176.006L436.035 674Z" clipRule="evenodd" ></path></svg></div><span className="group-focus-within:text-primary-300 group-hover:text-primary-300 transition duration-150" >Mine</span></button><button className="group inline-flex flex-col justify-center items-center cursor-pointer pt-2 mb-2 rounded-lg focus:outline-none prevent-select" ><a className="group inline-flex flex-col justify-center items-center cursor-pointer pt-2 mb-2 rounded-lg focus:outline-none prevent-select" href="/Verify" ><div className="w-16 h-16 flex justify-center items-center rounded-lg mb-2 ring-1 bg-white shadow-md ring-gray-600 group-focus-within:ring-primary-300 group-hover:outline-none group-hover:ring-primary-300 transition duration-150 overflow-hidden group-focus-within:ring-2" ><svg width="48" height="50" viewBox="0 0 48 50" fill="none" xmlns="http://www.w3.org/2000/svg" ><circle cx="15.167" cy="15.167" r="15.167" fill="#773B92" ></circle><path d="M16.5234 11.7735L15.8927 13.1412H7.16256L7.66048 11.7735H16.5234ZM15.335 14.4689L14.6911 15.8498H7.16256L7.66048 14.4689H15.335ZM18.1433 8.16863L17.3599 9.84827C17.112 9.63582 16.8421 9.44329 16.55 9.27068C16.2578 9.09807 15.9436 8.96087 15.6072 8.85907C15.2709 8.75285 14.9101 8.69974 14.5251 8.69974C13.8169 8.69974 13.1862 8.89005 12.633 9.27068C12.0798 9.65131 11.6438 10.2223 11.3251 10.9835C11.0109 11.7404 10.8538 12.6831 10.8538 13.8117C10.8538 14.9403 11.0109 15.883 11.3251 16.6399C11.6438 17.3967 12.0798 17.9654 12.633 18.346C13.1862 18.7223 13.8169 18.9104 14.5251 18.9104C14.9146 18.9104 15.2775 18.8595 15.6139 18.7577C15.9547 18.6559 16.2645 18.5231 16.5433 18.3593C16.8266 18.1911 17.0811 18.0141 17.3068 17.8282L18.1101 19.5012C17.6409 19.9261 17.0966 20.247 16.4769 20.4639C15.8573 20.6807 15.2067 20.7892 14.5251 20.7892C13.4142 20.7892 12.4294 20.5081 11.5708 19.946C10.7166 19.3839 10.0461 18.5828 9.5592 17.5427C9.07235 16.4982 8.82892 15.2545 8.82892 13.8117C8.82892 12.3644 9.07235 11.1185 9.5592 10.074C10.0461 9.02947 10.7166 8.22616 11.5708 7.66407C12.4294 7.10198 13.4142 6.82093 14.5251 6.82093C15.2332 6.82093 15.8927 6.93822 16.5035 7.17279C17.1143 7.40294 17.6609 7.73489 18.1433 8.16863Z" fill="#FEFEFE" ></path><circle cx="27.5042" cy="30.0083" r="18.2844" fill="#773B92" stroke="white" strokeWidth="2.58518" ></circle><path d="M21.3586 34.2349V34.0376H23.8858V34.1979C23.8858 35.2088 24.2022 35.9608 24.8351 36.4539C25.4761 36.9388 26.3678 37.1812 27.5102 37.1812C28.6444 37.1812 29.5155 36.9388 30.1237 36.4539C30.7319 35.969 31.036 35.3238 31.036 34.5184C31.036 33.7788 30.7771 33.1336 30.2593 32.583C29.7498 32.0241 28.595 31.5104 26.7952 31.042C24.9624 30.5653 23.6516 29.8996 22.8626 29.0449C22.0736 28.1819 21.6791 27.0971 21.6791 25.7903C21.6791 24.4178 22.1887 23.3042 23.2078 22.4495C24.2269 21.5947 25.6199 21.1674 27.3869 21.1674C29.1786 21.1674 30.6004 21.6317 31.6524 22.5604C32.7125 23.4891 33.2426 24.6521 33.2426 26.0492V26.2464H30.7031V26.0985C30.7031 25.2191 30.4237 24.5164 29.8648 23.9905C29.3142 23.4645 28.4923 23.2015 27.3993 23.2015C26.3062 23.2015 25.5008 23.4193 24.983 23.8549C24.4734 24.2822 24.2187 24.8986 24.2187 25.704C24.2187 26.3779 24.4734 26.9738 24.983 27.4916C25.4925 28.0093 26.6431 28.5024 28.4348 28.9709C30.2429 29.4311 31.5496 30.1092 32.355 31.005C33.1687 31.9008 33.5755 33.0391 33.5755 34.4198C33.5755 35.858 33.029 37.0169 31.9359 37.8962C30.8428 38.7674 29.3717 39.203 27.5225 39.203C25.6651 39.203 24.1735 38.7674 23.0475 37.8962C21.9216 37.0251 21.3586 35.8046 21.3586 34.2349ZM26.45 41.1508V29.8708H28.4348V38.1921L28.595 38.3154V41.1508H26.45ZM26.5733 29.8708V22.092L26.4007 21.9687V19.4908H28.5457V29.8708H26.5733Z" fill="#FEFEFE" ></path></svg></div><span className="group-focus-within:text-primary-300 group-hover:text-primary-300 transition duration-150" >Verify Transaction</span></a></button><button className="group inline-flex flex-col justify-center items-center cursor-pointer pt-2 mb-2 rounded-lg focus:outline-none prevent-select" ><div className="w-16 h-16 flex justify-center items-center rounded-lg mb-2 ring-1 bg-white shadow-md ring-gray-600 group-focus-within:ring-primary-300 group-hover:outline-none group-hover:ring-primary-300 transition duration-150 overflow-hidden group-focus-within:ring-2" ><svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" className="w-full h-full text-primary-500 transition duration-150 group-hover:text-primary-400 group-focus:text-primary-400" ><rect width="640" height="486.957" x="192" y="219.828" fill="currentColor" rx="27.826" ></rect><path fill="currentColor" fillRule="evenodd" d="M568 687H456v61.522h-69.234v55.653H637.2v-55.653H568V687Z" clipRule="evenodd" ></path><circle cx="512" cy="651.304" r="28" fill="#fff" ></circle><path fill="#fff" d="M247.641 275h528.696v320H247.641z" ></path><path fill="currentColor" fillRule="evenodd" d="M374.136 499.411c-7.83 7.441-20.538 7.454-28.385.028l-53.857-50.966c-3.774-3.57-5.894-8.417-5.894-13.472s2.12-9.902 5.893-13.473l53.858-50.967c7.846-7.425 20.555-7.413 28.385.028 7.83 7.44 7.817 19.491-.029 26.917L334.486 435l39.62 37.494c7.847 7.425 7.86 19.476-.03 26.917ZM649.864 499.411c7.83 7.441 20.538 7.454 28.385.028l53.857-50.966c3.774-3.57 5.894-8.417 5.894-13.472s-2.12-9.902-5.893-13.473l-53.858-50.967c-7.846-7.425-20.555-7.413-28.385.028-7.83 7.44-7.817 19.491.029 26.917L689.514 435l-39.62 37.494c-7.847 7.425-7.86 19.476-.03 26.917Z" clipRule="evenodd" ></path><path fill="currentColor" d="M469.029 343.663a2.674 2.674 0 0 1 2.685-2.663h25.962c1.483 0 2.686 1.192 2.686 2.663v20.412c0 1.47-1.203 2.663-2.686 2.663h-25.962c-1.483 0-2.685-1.193-2.685-2.663v-20.412ZM522.743 343.663c0-1.471 1.202-2.663 2.686-2.663h25.961c1.484 0 2.686 1.192 2.686 2.663v20.412c0 1.47-1.202 2.663-2.686 2.663h-25.961c-1.484 0-2.686-1.193-2.686-2.663v-20.412Z" ></path><path fill="currentColor" d="M469.029 410.875V529l31.333-11.957V410.875h22.381V529l31.333-11.957V410.875h20.819c17.179 0 31.105-13.952 31.105-31.161V362.3h-31.105v17.414h-125.79c-17.179 0-31.105 13.951-31.105 31.161v21.538h31.105v-21.538h19.924Z" ></path></svg></div><span className="group-focus-within:text-primary-300 group-hover:text-primary-300 transition duration-150" >DevPortal</span></button><button className="group inline-flex flex-col justify-center items-center cursor-pointer pt-2 mb-2 rounded-lg focus:outline-none prevent-select" ><div className="w-16 h-16 flex justify-center items-center rounded-lg mb-2 ring-1 bg-white shadow-md ring-gray-600 group-focus-within:ring-primary-300 group-hover:outline-none group-hover:ring-primary-300 transition duration-150 overflow-hidden group-focus-within:ring-2" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="500 450 450 450" fill="none" className="w-full h-full text-primary-500 transition duration-150 group-hover:text-primary-400 group-focus:text-primary-400 p-2" ><path fill="#fff" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="30.224" d="M775.949 796.683c78.916-22.038 124.678-105.056 102.212-185.426-22.465-80.37-104.652-127.657-183.568-105.619-78.916 22.038-124.678 105.056-102.212 185.425 22.466 80.37 104.652 127.658 183.568 105.62Z" ></path><path fill="currentColor" d="M691.078 572.261c0-1.296 1.019-2.406 2.315-2.406h23.052c1.296-.185 2.407.925 2.407 2.313l.278 18.6c0 1.295-1.018 2.406-2.315 2.406h-23.052c-1.296.185-2.407-.926-2.407-2.314l-.278-18.599ZM738.75 571.984c0-1.295 1.018-2.406 2.315-2.406h23.052c1.296-.185 2.407.926 2.407 2.314l.278 18.599c0 1.296-1.019 2.406-2.315 2.406h-23.052c-1.296.185-2.407-.925-2.407-2.313l-.278-18.6Z" ></path><path fill="currentColor" d="m692.003 633.429 1.481 96.514 27.96 11.012-1.667-107.619h19.905l1.481 96.422 27.96 11.012-1.667-107.619h18.516c15.276-.185 27.404-12.955 27.219-28.686l-.278-15.823-27.589.185.278 15.823-111.745.648c-15.275 0-27.403 12.862-27.218 28.501l.278 19.617 27.588-.185-.277-19.617h17.683l.092-.185Z" ></path><path fill="currentColor" fillRule="evenodd" d="M733.211 515.441c-73.694.463-132.576 61.536-131.372 136.398 1.204 74.953 61.844 135.286 135.63 134.824 73.694-.463 132.575-61.536 131.372-136.398-1.204-74.953-61.844-135.286-135.63-134.824ZM577.583 652.024c-1.389-88.557 68.139-160.734 155.257-161.197 87.118-.463 158.868 70.79 160.257 159.346 1.388 88.556-68.139 160.734-155.257 161.197-87.119.555-158.868-70.79-160.257-159.346Z" clipRule="evenodd" ></path></svg></div><span className="group-focus-within:text-primary-300 group-hover:text-primary-300 transition duration-150" >KYC</span></button><button className="group inline-flex flex-col justify-center items-center cursor-pointer pt-2 mb-2 rounded-lg focus:outline-none prevent-select" ><div className="w-16 h-16 flex justify-center items-center rounded-lg mb-2 ring-1 bg-white shadow-md ring-gray-600 group-focus-within:ring-primary-300 group-hover:outline-none group-hover:ring-primary-300 transition duration-150 overflow-hidden group-focus-within:ring-2" ><svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" className="w-full h-full text-primary-500 transition duration-150 group-hover:text-primary-400 group-focus:text-primary-400" ><path fill="#fff" stroke="currentColor" strokeLinejoin="round" strokeWidth="50" d="M224 284.632C224 251.146 251.146 224 284.632 224h454.736C772.854 224 800 251.146 800 284.632V772l-90.947-91.333H284.632c-33.486 0-60.632-27.146-60.632-60.632V284.632Z" ></path><path fill="currentColor" d="M449.829 327.852c0-2.127 1.739-3.852 3.885-3.852h37.562c2.146 0 3.886 1.725 3.886 3.852v29.533c0 2.128-1.74 3.852-3.886 3.852h-37.562c-2.146 0-3.885-1.724-3.885-3.852v-29.533ZM527.543 327.852c0-2.127 1.74-3.852 3.886-3.852h37.561c2.147 0 3.886 1.725 3.886 3.852v29.533c0 2.128-1.739 3.852-3.886 3.852h-37.561c-2.146 0-3.886-1.724-3.886-3.852v-29.533Z" ></path><path fill="currentColor" d="M449.829 425.095V596l45.333-17.3V425.095h32.381V596l45.333-17.3V425.095h30.122c24.854 0 45.002-20.184 45.002-45.084v-25.194h-45.002v25.194H421.002c-24.854 0-45.002 20.185-45.002 45.084v31.162h45.002v-31.162h28.827Z" ></path></svg></div><span className="group-focus-within:text-primary-300 group-hover:text-primary-300 transition duration-150" >Chat</span></button><button className="group inline-flex flex-col justify-center items-center cursor-pointer pt-2 mb-2 rounded-lg focus:outline-none prevent-select" ><div className="w-16 h-16 flex justify-center items-center rounded-lg mb-2 ring-1 bg-white shadow-md ring-gray-600 group-focus-within:ring-primary-300 group-hover:outline-none group-hover:ring-primary-300 transition duration-150 overflow-hidden group-focus-within:ring-2" ><svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1280" viewBox="0 0 2048 2048" className="w-full h-full text-primary-500 transition duration-150 group-hover:text-primary-400 group-focus:text-primary-400" ><path fill="currentColor" d="M1012 447h28l43 3 28 3 29 5 36 9 35 11 26 10 30 13 17 8 22 12 19 11 30 20 14 10 16 13 13 10 10 9 8 7 10 9 19 19 7 8 11 13 22 28 13 18 15 23 13 22 13 24 13 28 12 31 11 33 8 30 8 38 4 27 3 35v69l-3 40-4 28-9 41-9 31-12 35-19 44-15 29-14 23-10 15-10 16-14 18-10 12-9 11-13 15-12 13-14 14-8 7-10 9-13 10-12 10-16 12-15 11-19 12-25 15-27 14-17 8-32 13-50 16-30 7-30 6-30 4-23 2-20 1h-51l-31-2-28-3-24-4-37-9-26-8-26-9-29-12-29-13-22-12-23-13-28-19-16-12-16-13-11-9-14-12-31-31-9-11-13-15-11-14-9-11-14-20-14-22-10-17-13-24-14-29-12-30-9-27-10-34-7-34-5-31-3-29-1-17v-54l2-34 4-33 3-19 10-40 7-23 10-29 13-30 9-20 10-20 20-34 16-24 13-17 10-13 7-9 14-17 9-10 2-3h2l2-4 13-13 8-7 13-11 14-11 17-14 18-13 15-10 17-11 24-14 19-10 33-15 45-16 32-9 36-8 24-4 37-4zm-22 68-33 3-37 6-27 6-29 9-20 7-29 12-16 8-29 15-21 13-20 14-18 13-13 11-10 8-15 14-8 7v2l-4 2-8 8-7 8-11 13-8 10-9 11-10 13-11 18-10 16-9 15-12 23-13 29-10 25-14 45-6 28-5 33-3 28-1 18v38l2 28 5 36 5 26 8 31 12 36 11 27 12 25 12 22 12 21 20 30 6 5 3 4 4-1 10-21 5-9 10-21 8-14 7-12 9-14 8-11 14-18 7-8 8-10 10-11v-2l3-1v-2l4-2 9-9 10-8 12-10 11-9 15-11 19-12 17-10 22-12 30-13 6-3-6-7-14-9-9-9-6-5-7-8-13-17-9-13-9-15-8-16-10-22-6-17-5-17-3-17-2-27 1-31 4-26 9-32 10-23 13-26 14-21 11-14 9-10 11-11 17-13 10-7 15-9 23-12 21-9 21-6 23-4 23-2h33l24 2 22 4 26 8 18 8 17 9 18 11 16 12 11 10 8 7 13 14 14 19 8 13 10 18 9 20 8 24 6 24 3 20 1 10v34l-3 24-6 26-6 20-11 24-10 19-14 19-10 13-12 14-11 11-10 6-17 9v2l26 12 23 11 29 16 16 10 12 8 13 10 13 11 10 8 10 9 12 11 7 8 10 11 13 17 13 18 14 22 11 20 9 16 8 19 6 17 2 3 4-2 9-9 9-13 7-11 10-15 8-14 12-22 9-19 14-34 9-29 6-22 7-33 4-28 3-32 1-35-2-43-4-34-8-39-8-29-12-35-12-28-8-17-10-19-17-29-14-20-10-13-8-10-14-17-10-11-7-8-19-19-8-7-16-13-19-14-14-10-22-14-20-12-16-9-28-13-33-13-22-7-38-10-25-5-23-3-36-3zm19 176-27 4-23 6-16 7-19 11-14 10-14 13-5 4-7 8-7 9-10 16-11 21-6 15-5 15-4 20-1 8v30l3 23 5 19 8 20 12 23 12 17 13 15 11 9 12 9 19 12 19 9 15 6 30 6 17 2h18l22-3 25-7 13-5 18-8 19-12 13-10 13-13 11-12 11-16 6-10 11-23 5-17 4-24 1-13v-24l-2-19-5-23-6-16-10-20-10-16-11-14-19-19-13-10-16-10-25-12-15-5-14-3-25-3zm-15 434-26 3-30 6-25 7-27 10-33 16-19 12-15 10-17 13-17 14-13 12-12 14-7 8-11 14-3 3v2h-2l-14 22-16 29-13 28-10 25-6 19v6l7 6 11 9 18 14 12 9 21 14 24 15 24 13 27 13 27 11 27 9 42 11 31 5 33 3 19 1h51l35-3 29-4 28-6 30-8 34-12 27-12 38-19 28-17 17-12 16-12 17-13 10-9 4-5 2-8-3-12-7-21-5-13-14-29-12-21-12-19-12-16-9-11-9-10-7-8-11-11-11-9-13-11-14-10-15-10-24-14-15-8-38-16-23-7-23-5-30-4-13-1z" ></path><path fill="currentColor" d="m1128 1222 37 3 7 3 2 6v10l-4 21-5 12-11 12-9 6-14 4-14 2h-27v26l-1 138-5 5-23 12-12 3-7-1-1-2v-56l-1-101-1-19-4-4-4-1h-18l-7 3-1 162-4 4-17 8-9 4-4 1h-14l-2-3v-172l-2-5-4-3-3-1h-10l-7 3-1 10v10l-3 7-4 5-8 2h-26l-7-2-3-4-2-9v-20l4-17 6-12 9-11 8-6 8-2 11-1 48-1h63l80-1 8-3 2-3 2-14zM982 1190h21l2 5 1 11v21l-2 1-10 1h-31l-6-2-2-3v-25l3-7 2-1z" ></path><path fill="currentColor" d="M1046 1189h17l18 1 5 3 2 5 1 15v14l-5 3h-38l-5-3v-24l2-10 1-3z" ></path></svg></div><span className="group-focus-within:text-primary-300 group-hover:text-primary-300 transition duration-150" >Profile</span></button></div><div className="flex justify-center mt-2" ><a href="/Verify" className="text-lg text-primary-500 hover:text-primary-600 font-bold underline" >Privacy Policy</a></div><a className="inline-block rounded-lg text-center transition ease-in-out duration-300 focus-visible:outline-none focus-visible:outline-2 focus-visible:ring-inset focus-visible:outline-primary-500 disabled:bg-gray-500 text-white bg-primary-500 hover:bg-primary-700 px-4 py-2 w-full mt-4" href="/Verify" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024" fill="none" className="inline text-white" ><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="44" d="m676.307 231.5-281.35 70.55c-41.083 10.2-82.733 51.85-92.933 92.934l-70.55 281.35c-21.25 85 30.883 137.416 116.166 116.166l281.35-70.266c40.8-10.2 82.734-52.134 92.934-92.934l70.55-281.633c21.25-85-31.167-137.417-116.167-116.167Z" ></path><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="44" d="M511.999 611.166c54.768 0 99.166-44.398 99.166-99.166 0-54.769-44.398-99.167-99.166-99.167-54.769 0-99.167 44.398-99.167 99.167 0 54.768 44.398 99.166 99.167 99.166Z" ></path></svg> Explore the Ecosystem </a></div></div></div></main>
+
       </div>
     </div>
   );
